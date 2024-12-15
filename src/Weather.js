@@ -7,22 +7,23 @@ import "./Weather.css";
 export default function Weather(props) {
     const [weatherData, setWeatherData] = useState({ ready: false });
     const [city, setCity] = useState(props.defaultCity);
+
     function handleResponse(response) {
         setWeatherData({
             ready: true,
-            temperature: response.data.main.temp,
-            humidity: response.data.main.humidity,
-            date: new Date(response.data.dt * 1000),
-            description: response.data.weather[0].description,
-            icon: response.data.weather[0].icon,
+            temperature: response.data.temperature.current,
+            humidity: response.data.temperature.humidity,
+            date: new Date(response.data.time * 1000),
+            description: response.data.condition.description,
+            iconUrl: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
             wind: response.data.wind.speed,
-            city: response.data.name,
+            city: response.data.city,
         });
     }
 
     function search() {
-          const apiKey = "ba134462cbbd629c38e5014a164ea273";
-          let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=metric`;
+          const apiKey = "40b5c70t36fead3dof40b74ca69cca04";
+          let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
           axios.get(apiUrl).then(handleResponse);
     }
 
@@ -58,7 +59,7 @@ export default function Weather(props) {
                  </div>   
                 </form>
                 <WeatherInfo data={weatherData} />
-                <WetaherForecast />
+                <WetaherForecast city={weatherData.city} />
             </div>
         
             );      
