@@ -2,7 +2,9 @@
     text-align: center;
 }
 
-.WeatherForecast-temperature-min {
-    opacity: 0.6;
-    margin-left: 5px;
+.ForecastDay {
+    border: 2px solid #236068de;
+    border-radius: 10px;
+    background-color: #197c8981;
+    
 }
