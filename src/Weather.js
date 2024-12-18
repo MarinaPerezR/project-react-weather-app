@@ -3,6 +3,7 @@ import WeatherInfo from "./WeatherInfo";
 import WetaherForecast from "./WeatherForecast.js"
 import axios from "axios";
 import "./Weather.css";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 export default function Weather(props) {
     const [weatherData, setWeatherData] = useState({ ready: false });
@@ -65,7 +66,19 @@ export default function Weather(props) {
             );      
         } else {
           search();
-          return "Loading...";
+          return (
+             <MagnifyingGlass
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="magnifying-glass-loading"
+              wrapperStyle={{}}
+              wrapperClass="magnifying-glass-wrapper"
+              glassColor="#c0efff"
+              color="#e15b64"
+              />
+            );
+          
         }
 
     }
