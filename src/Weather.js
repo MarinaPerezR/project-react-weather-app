@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
 import WetaherForecast from "./WeatherForecast.js"
 import axios from "axios";
+import FadeLoader from "react-spinners/FadeLoader";
 import "./Weather.css";
-import { MagnifyingGlass } from "react-loader-spinner";
+
 
 export default function Weather(props) {
     const [weatherData, setWeatherData] = useState({ ready: false });
@@ -67,16 +68,13 @@ export default function Weather(props) {
         } else {
           search();
           return (
-             <MagnifyingGlass
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="magnifying-glass-loading"
-              wrapperStyle={{}}
-              wrapperClass="magnifying-glass-wrapper"
-              glassColor="#c0efff"
-              color="#e15b64"
-              />
+            <FadeLoader
+  color="#2fbbc6"
+  height={30}
+  margin={15}
+  radius={10}
+  width={5}
+/>
             );
           
         }
